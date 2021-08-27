@@ -1,4 +1,4 @@
-FROM docker.io/library/postgres:13.3-alpine3.14
+FROM docker.io/library/postgres:13.4-alpine3.14
 
 RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 RUN apk add --no-cache curl jq musl-locales pgbackrest
