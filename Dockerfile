@@ -1,4 +1,4 @@
-ARG POSTGESQL
+ARG POSTGRESQL
 ARG ALPINE
 
 FROM docker.io/library/postgres:${POSTGRESQL}-alpine${ALPINE}
