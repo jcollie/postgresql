@@ -3,9 +3,11 @@
 PGDATA=/var/lib/pgsql/13/data
 export PGDATA
 
+PGBACKREST_PG1_PATH="$PGDATA"
+export PGBACKREST_PG1_PATH
+
 if [ ! -s "$PGDATA/PG_VERSION" ]
 then
-    echo "Database does not exist!"
     /usr/pgsql-13/bin/initdb --username=postgres --pwfile=<(echo "$POSTGRES_PASSWORD") --data-checksums --locale=en_US.utf8
     echo "host all all all scram-sha-256" >> "$PGDATA/pg_hba.conf"
     /usr/pgsql-13/bin/pg_ctl -o "-c listen_addresses='' -p 5432" -w start
