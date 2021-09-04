@@ -41,6 +41,6 @@ jobs:
           platforms: linux/amd64 #,linux/arm64
           tags: ghcr.io/${{ github.repository }}:latest,ghcr.io/${{ github.repository }}:${{ env.POSTGRESQL }}-${{ env.PGBACKREST }}-${{ env.ROCKYLINUX}}-${{ steps.date.outputs.date }}
           build-args: |
-            ROCKYLINUX=${{ env.ALPINE }}
+            ROCKYLINUX=${{ env.ROCKYLINUX }}
             PGBACKREST=${{ env.PGBACKREST }}
             POSTGRESQL=${{ env.POSTGRESQL }}
