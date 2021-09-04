@@ -38,7 +38,7 @@ jobs:
         with:
           push: true
           context: .
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64 # ,linux/arm64
           tags: ghcr.io/${{ github.repository }}:latest,ghcr.io/${{ github.repository }}:${{ env.POSTGRESQL }}-${{ env.PGBACKREST }}-${{ env.ROCKYLINUX}}-${{ steps.date.outputs.date }}
           build-args: |
             ROCKYLINUX=${{ env.ROCKYLINUX }}
