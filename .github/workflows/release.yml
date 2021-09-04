@@ -9,6 +9,10 @@ jobs:
   build:
     name: 'release'
     runs-on: ubuntu-latest
+    env:
+      ALPINE: '3.14'
+      PGBACKREST: '2.35'
+      POSTGRESQL: '13.4'
     steps:
       - name: 'checkout'
         uses: actions/checkout@v2
@@ -31,4 +35,8 @@ jobs:
           push: true
           context: .
           platforms: linux/amd64,linux/arm64
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: ghcr.io/${{ github.repository }}:latest,ghcr.io/${{ github.repository }}:${{ env.POSTGRESQL }}-${{ env.PGBACKREST }}-${{ env.ALPINE}}-${{ github.run_id }}
+          build-args: |
+            ALPINE=${{ env.ALPINE }}
+            PGBACKREST=${{ env.PGBACKREST }}
+            POSTGRESQL=${{ env.POSTGRESQL }}
