@@ -10,7 +10,7 @@ jobs:
     name: 'release'
     runs-on: ubuntu-latest
     env:
-      ALPINE: '3.14'
+      ROCKYLINUX: '8.4'
       PGBACKREST: '2.35'
       POSTGRESQL: '13.4'
     steps:
@@ -39,8 +39,8 @@ jobs:
           push: true
           context: .
           platforms: linux/amd64 #,linux/arm64
-          tags: ghcr.io/${{ github.repository }}:latest,ghcr.io/${{ github.repository }}:${{ env.POSTGRESQL }}-${{ env.PGBACKREST }}-${{ env.ALPINE}}-${{ steps.date.outputs.date }}
+          tags: ghcr.io/${{ github.repository }}:latest,ghcr.io/${{ github.repository }}:${{ env.POSTGRESQL }}-${{ env.PGBACKREST }}-${{ env.ROCKYLINUX}}-${{ steps.date.outputs.date }}
           build-args: |
-            ALPINE=${{ env.ALPINE }}
+            ROCKYLINUX=${{ env.ALPINE }}
             PGBACKREST=${{ env.PGBACKREST }}
             POSTGRESQL=${{ env.POSTGRESQL }}
