@@ -17,6 +17,15 @@ then
     /usr/pgsql-13/bin/pg_ctl -m fast -w stop
 fi
 
+if [ -s "/cert/tls.crt" -a -s "/cert/tls.key" ]
+then
+    /usr/bin/sed -i -e "s@^#* *ssl *=.*\$@ssl = on@" "$PGDATA/postgresql.conf"
+    /usr/bin/sed -i -e "s@^#* *ssl_cert_file *=.*\$@ssl_cert_file = '/cert/tls.crt'@" "$PGDATA/postgresql.conf"
+    /usr/bin/sed -i -e "s@^#* *ssl_key_file *=.*\$@ssl_key_file = '/cert/tls.key'@" "$PGDATA/postgresql.conf"
+else
+    /usr/bin/sed -i -e "s@^#* *ssl *=.*\$@ssl = off@" "$PGDATA/postgresql.conf"
+fi
+
 if [ -z "$@" ]
 then
     exec /usr/pgsql-13/bin/postgres
